@@ -2,7 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
-import { SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import NavItems from "./NavItems";
+import MobileNav from "./MobileNav";
 
 const Header = () => {
   return (
@@ -16,12 +18,19 @@ const Header = () => {
             height={38}
           />
         </Link>
+        <nav className="hidden md:block">
+          <NavItems />
+        </nav>
         <div>
+          <SignedIn>
+            <div className="flex items-center justify-between gap-x-2">
+              <UserButton afterSignOutUrl="/" />
+              <MobileNav />
+            </div>
+          </SignedIn>
           <SignedOut>
-            <Button asChild className="rounded-full" size={"lg"} >
-              <Link href={"/sign-in"}>
-                Login
-              </Link>
+            <Button asChild className="rounded-full" size={"lg"}>
+              <Link href={"/sign-in"}>Login</Link>
             </Button>
           </SignedOut>
         </div>
