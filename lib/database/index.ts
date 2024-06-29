@@ -14,7 +14,7 @@ export const connectToDatabase = async () => {
         throw new Error('MongoDB URI is missing!!!');
     };
     cached.promise = cached.promise || mongoose.connect(MONGODB_URI, {
-        dbName: 'eventlo',
+        dbName: 'fypgmsdb',
         bufferCommands: false,
     });
     // if (!cached.promise) {
